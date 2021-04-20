@@ -32,7 +32,7 @@ AppAsset::register($this);
   <?php $this->beginBody() ?>
   <nav class="header">
     <a href="index">
-      <img src="/resource/img/logo.svg" alt="Coffeegreeder" width="64px">
+      <img src="/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     <div class="header__navigation">
       <a href="#">

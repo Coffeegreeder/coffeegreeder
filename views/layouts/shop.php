@@ -92,7 +92,7 @@ AppAsset::register($this);
   <footer>
     <div class="logo">
     <a href="index">
-      <img src="/resource/img/logo.svg" alt="Coffeegreeder" width="64px">
+      <img src="/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     </div>
     <div class="social-links">

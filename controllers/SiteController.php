@@ -15,9 +15,7 @@ use app\modules\admin\models\Store;
 class SiteController extends Controller
 {
   public $layout = 'shop';
-    /**
-     * {@inheritdoc}
-     */
+
     public function behaviors()
     {
         return [
@@ -41,9 +39,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -59,6 +54,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        // передача данных из модели "store" во view
         $stuff = Store::find()->orderBy('created_at DESC')->all();;
         return $this->render('index', ['stuff' => $stuff]);
     }

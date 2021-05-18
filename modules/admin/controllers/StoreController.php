@@ -42,28 +42,15 @@ class StoreController extends Controller {
         ]);
     }
 
+    // __________________ Экшен создания новой записи
     public function actionCreate()
     {
         $model = new Store();
-
-
-          // if(Yii::$app->request->isPost){
-          //   $model->load(Yii::$app->request->post());
-          //   $model->img_before = UploadedFile::getInstance($model, 'img_before');
-          //   $model->img_before->saveAs("images/{$model->img_before->baseName}.{$model->img_before->extension}");
-          //   $model->img_after = UploadedFile::getInstance($model, 'img_after');
-          //   $model->img_after->saveAs("images/{$model->img_after->baseName}.{$model->img_after->extension}");
-          //   $model->save(false);
-          //   return $this->redirect(['view', 'id' => $model->id]);
-          // }
-
-
         if ($model->load(Yii::$app->request->post())) {
             $model->img_upload = UploadedFile::getInstance($model, 'img_upload');
             $model->img_update = UploadedFile::getInstance($model, 'img_update');
 
             if ($model->upload()) {
-                // file is uploaded successfully
                 $model->save(false);
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -73,6 +60,7 @@ class StoreController extends Controller {
         ]);
     }
 
+    // __________________ Экшен обновления существующей записи
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -87,6 +75,7 @@ class StoreController extends Controller {
         ]);
     }
 
+    // __________________ Экшен удаления записи
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();

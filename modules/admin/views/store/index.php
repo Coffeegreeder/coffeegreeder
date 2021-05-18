@@ -13,16 +13,11 @@ $this->title = 'Записи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="request-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Добавить запись', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $StoreRequest]); ?>
-
-    <?= GridView::widget([
+  <h1><?= Html::encode($this->title) ?></h1>
+  <p>
+    <?= Html::a('Добавить запись', ['create'], ['class' => 'btn btn-success']) ?>
+  </p>
+  <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $StoreRequest,
         'columns' => [
@@ -46,11 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'status_id',
             'created_at',
             'price',
-            //'updated_by',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-
 </div>

@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -25,7 +22,6 @@ AppAsset::register($this);
   <?php $this->registerCsrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
   <?php $this->head() ?>
-
 </head>
 
 <body>
@@ -35,38 +31,6 @@ AppAsset::register($this);
       <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     <div class="header__navigation">
-
-      <!-- <?php
-    NavBar::begin([
-        'brandLabel' => 'Админ сайт',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Основа без админки', 'url' => ['/site/index']],
-            ['label' => 'Запись', 'url' => ['/admin/request/index']],
-            ['label' => 'Категории', 'url' => ['/admin/category/index']],
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Войти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?> -->
-
       <a href="/site/index">
         главная
       </a>
@@ -129,9 +93,9 @@ AppAsset::register($this);
   </div>
   <footer>
     <div class="logo">
-    <a href="index">
-      <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
-    </a>
+      <a href="index">
+        <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
+      </a>
     </div>
     <div class="social-links">
       <h4>СОЦИАЛЬНЫЕ СЕТИ</h4>

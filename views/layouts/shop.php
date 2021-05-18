@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -35,9 +32,7 @@ AppAsset::register($this);
       <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     <div class="header__navigation">
-      <a href="#">
-        главная
-      </a>
+      <a href="#"> главная </a>
       <?php if(Yii::$app->user->isGuest){
         echo '<a href="/web/site/login">
                 авторизация
@@ -53,7 +48,6 @@ AppAsset::register($this);
                 Панель управления
               </a>';
       } ?>
-
     </div>
   </nav>
   <div class="container">

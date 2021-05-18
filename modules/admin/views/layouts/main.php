@@ -31,33 +31,65 @@ AppAsset::register($this);
 <body>
   <?php $this->beginBody() ?>
   <nav class="header">
-    <a href="site/index">
+    <a href="/site/index">
       <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     <div class="header__navigation">
-      <a href="#">
+
+      <!-- <?php
+    NavBar::begin([
+        'brandLabel' => 'Админ сайт',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            ['label' => 'Основа без админки', 'url' => ['/site/index']],
+            ['label' => 'Запись', 'url' => ['/admin/request/index']],
+            ['label' => 'Категории', 'url' => ['/admin/category/index']],
+            Yii::$app->user->isGuest ? (
+            ['label' => 'Войти', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Выход (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+    NavBar::end();
+    ?> -->
+
+      <a href="/site/index">
         главная
       </a>
       <?php if(Yii::$app->user->isGuest){
-        echo '<a href="/web/site/login">
-                авторизация
-              </a>';
+        echo '<a href="/site/login">
+          авторизация
+        </a>';
       } else {
         echo Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
             'Выход (' . Yii::$app->user->identity->username . ')',
             ['class' => 'btn btn-link logout']
         )
-        . Html::endForm(),
-        '<a href="/web/admin/store">
-                Панель управления
-              </a>';
+        . Html::endForm();
       } ?>
 
     </div>
   </nav>
   <div class="container">
     <div class="row">
+      <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
       <div class="main">
         <div class="side-bar">
           <div class="side-bar__search-form">

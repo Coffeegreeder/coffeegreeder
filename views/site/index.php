@@ -1,53 +1,54 @@
 <?php
 
-/* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Каталог';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+<div class="banner">
+  <div class="banner__info">
+  <div class="banner__text">
+    <h3>НОВЫЕ ПОСТУПЛЕНИЯ ТОВАРА!</h3>
+  </div>
+  <div class="banner__content">
+    <a href="#">Посмотреть</a>
+  </div>
+  </div>
+  <div class="banner__image">
+    <img src="/web/images/banner-pic.png" alt="">
+  </div>
 </div>
+
+<div class="catalog">
+  <input type="radio" id="all" name="color" />
+      <label for="all">Все товары</label>
+      <input type="radio" id="status-2" name="color" />
+      <label for="status-2">Акции</label>
+      <input type="radio" id="status-3" name="color" />
+      <label for="status-3">Популярное</label>
+      <input type="radio" id="status-1" name="color" />
+      <label for="status-1">Новое</label>
+      <!-- товары -->
+      <?php foreach ($stuff as $item){
+        echo '<div class="catalog__item status-'.$item->status_id.'">
+              <img src="/web/'.$item->img_before.'" />
+              <h4>'.$item->name.'</h4>
+              <p class="catalog__info">
+                '.$item->description.'
+              </p>
+            </div>';
+      } ?>
+
+        <!-- <img src="/web/images/pic1.png" />
+        <h4>Brawl stars</h4>
+        <p class="catalog__info">
+          Модная детская футболка. 100% хлопок.
+        </p>
+      </div> -->
+
+</div>
+
+
+<!-- Футболка для беременных "Папа, спаси
+
+Оригинальная футболка для беременных с тонким юмором. Высокое качество материала – 100% хлопок – обеспечивает сохранение формы и насыщенности цвета ...
+ -->

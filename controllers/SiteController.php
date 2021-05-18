@@ -6,12 +6,15 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\modules\admin\models\Store;
 
 class SiteController extends Controller
 {
+  public $layout = 'shop';
     /**
      * {@inheritdoc}
      */
@@ -54,30 +57,21 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        return $this->render('index');
+        $stuff = Store::find()->orderBy('created_at DESC')->all();;
+        return $this->render('index', ['stuff' => $stuff]);
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect('/web/admin/store/');
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect('/web/admin/store/');
         }
 
         $model->password = '';
@@ -86,11 +80,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -98,11 +87,6 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
     public function actionContact()
     {
         $model = new ContactForm();
@@ -116,11 +100,7 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
+
     public function actionAbout()
     {
         return $this->render('about');

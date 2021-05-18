@@ -30,15 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=> 'img_before',
                 'value' => function($model){
-
-                    '/'return Html::img($model->img_before, ['width' => 150]);
+                    return echo '/'.Html::img($model->img_before, ['width' => 150]);
                 },
                 'format' => 'html'
             ],
             [
                 'attribute'=> 'img_after',
                 'value' => function($model){
-                    '/'return Html::img($model->img_after, ['width' => 150]);
+                    return echo '/'.Html::img($model->img_after, ['width' => 150]);
                 },
                 'format' => 'html'
             ],

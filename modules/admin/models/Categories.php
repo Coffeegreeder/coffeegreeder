@@ -4,17 +4,17 @@ namespace app\modules\admin\models;
 
 use Yii;
 
-class Status extends \yii\db\ActiveRecord
+class Categories extends \yii\db\ActiveRecord
 {
 
   public static function tableName(){
-      return 'status';
+      return 'categories';
   }
 
   public function rules()
     {
         return [
-            [['status_name'], 'string', 'max' => 255],
+            [['category_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -22,12 +22,12 @@ class Status extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID статуса',
-            'status_name' => 'Название статуса',
+            'category_name' => 'Название статуса',
         ];
     }
 
     public function getRequests()
     {
-        return $this->hasMany(Request::className(), ['status_id' => 'id']);
+        return $this->hasMany(Request::className(), ['category_id' => 'id']);
     }
   }

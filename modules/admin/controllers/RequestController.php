@@ -3,14 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\admin\models\Store;
-use app\modules\admin\models\StoreRequest;
+use app\modules\admin\models\Requests;
+use app\modules\admin\models\RequestsFinder;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
+use yii\widgets\Pjax;
 
-class StoreController extends Controller {
+class RequestController extends Controller {
 
   public function behaviors()
     {
@@ -21,16 +23,29 @@ class StoreController extends Controller {
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+              'class' => AccessControl::className(),
+              'rules' => [
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
+                  ]
+            ]
         ];
     }
 
     public function actionIndex()
     {
-        $StoreRequest = new StoreRequest();
-        $dataProvider = $StoreRequest->search(Yii::$app->request->queryParams);
+        $RequestsFinder = new RequestsFinder();
+        $dataProvider = $RequestsFinder->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'StoreRequest' => $StoreRequest,
+            'RequestsFinder' => $RequestsFinder,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -45,7 +60,7 @@ class StoreController extends Controller {
     // __________________ Экшен создания новой записи
     public function actionCreate()
     {
-        $model = new Store();
+        $model = new Requests();
         if ($model->load(Yii::$app->request->post())) {
             $model->img_upload = UploadedFile::getInstance($model, 'img_upload');
             $model->img_update = UploadedFile::getInstance($model, 'img_update');
@@ -65,11 +80,16 @@ class StoreController extends Controller {
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+          $model->img_upload = UploadedFile::getInstance($model, 'img_upload');
+          $model->img_update = UploadedFile::getInstance($model, 'img_update');
+          ($model->is_solved ? $model->category_id = 2 : $model->category_id = 3);
+           if ($model->upload()) {
+               $model->save(false);
+               return $this->redirect(['view', 'id' => $model->id]);
+           }
 
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -85,7 +105,7 @@ class StoreController extends Controller {
 
     protected function findModel($id)
     {
-        if (($model = Store::findOne($id)) !== null) {
+        if (($model = Requests::findOne($id)) !== null) {
             return $model;
         }
 

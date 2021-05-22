@@ -8,19 +8,19 @@ use yii\behaviors\BlameableBehavior;
 use Yii;
 use yii\db\Expression;
 
-class Store extends \yii\db\ActiveRecord
+class Requests extends \yii\db\ActiveRecord
 {
     public $img_upload;
     public $img_update;
     public function __construct($config = [])
     {
         parent::__construct($config);
-        $this->status_id = '1';
+        $this->category_id = '1';
     }
 
     public static function tableName()
     {
-        return 'store';
+        return 'requests';
     }
     public function behaviors()
     {
@@ -38,13 +38,13 @@ class Store extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img_upload'], 'required'],
-            [['price'], 'integer'],
+            [['name'], 'required'],
+            [['is_solved'], 'boolean'],
             [['created_at'], 'safe'],
-            [['img_upload'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, bmp', 'maxSize' => 10 * 1024 * 1024  ],
+            [['img_upload'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, bmp', 'maxSize' => 10 * 1024 * 1024  ],
             [['img_update'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, bmp', 'maxSize' => 10 * 1024 * 1024 ],
-            [['description', 'name', 'img_after', 'img_before'], 'string', 'max' => 255],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
+            [['description', 'name', 'reason', 'img_after', 'img_before'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -58,9 +58,10 @@ class Store extends \yii\db\ActiveRecord
             'img_before' => 'картинка "до"',
             'img_after' => 'картинка "после"',
             'description' => 'описание',
+            'reason' => 'причина',
             'created_at' => 'дата создания',
-            'price' => 'цена',
-            'status_id' => 'ID статуса',
+            'is_solved' => 'проблема решена?',
+            'category_id' => 'ID категории',
         ];
     }
 
@@ -83,8 +84,8 @@ class Store extends \yii\db\ActiveRecord
         }
     }
 
-    public function getStatus()
+    public function getCategory()
     {
-        return $this->hasOne(Status::className(), ['id' => 'status_id']);
+        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
     }
 }

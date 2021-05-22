@@ -31,7 +31,7 @@ AppAsset::register($this);
       <img src="/web/images/logo.svg" alt="Coffeegreeder" width="64px">
     </a>
     <div class="header__navigation">
-      <a href="/site/index">
+      <a href="/site/index" class="btn btn-link logout">
         главная
       </a>
       <?php if(Yii::$app->user->isGuest){
@@ -41,7 +41,7 @@ AppAsset::register($this);
       } else {
         echo Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            'Выход (' . Yii::$app->user->identity->username . ')',
+            'Выход',
             ['class' => 'btn btn-link logout']
         )
         . Html::endForm();
@@ -55,36 +55,6 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
       <div class="main">
-        <div class="side-bar">
-          <div class="side-bar__search-form">
-            <input type="text" name="search" value="" placeholder="search">
-          </div>
-          <div class="side-bar__menu">
-            <ul>
-              <a href="#">
-                <li>Все товары</li>
-              </a>
-              <a href="#">
-                <li>Новое</li>
-              </a>
-              <a href="#">
-                <li>Популярное</li>
-              </a>
-              <a href="#">
-                <li>Скидки</li>
-              </a>
-              <a href="#">
-                <li>Избранное</li>
-              </a>
-              <a href="#">
-                <li>Специально для вас</li>
-              </a>
-              <a href="#">
-                <li>Лимитированное</li>
-              </a>
-            </ul>
-          </div>
-        </div>
         <div class="main__content">
           <?= $content ?>
         </div>
@@ -132,16 +102,13 @@ AppAsset::register($this);
       <h4>ПОМОЩЬ И ПОДДЕРЖКА</h4>
       <ul>
         <a href="#">
-          <li>цена доставки</li>
+          <li>Правила заполнения заявки</li>
         </a>
         <a href="#">
-          <li>возврат товара</li>
+          <li>О запросах</li>
         </a>
         <a href="#">
-          <li>справка размера</li>
-        </a>
-        <a href="#">
-          <li>как сделать заказ</li>
+          <li>справка</li>
         </a>
       </ul>
     </div>

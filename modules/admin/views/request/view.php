@@ -25,26 +25,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'price',
             'name',
             [
                 'attribute'=> 'img_before',
                 'value' => function($model){
-                    return echo '/'.Html::img($model->img_before, ['width' => 150]);
+                    return Html::img($model->img_before, ['width' => 150]);
                 },
                 'format' => 'html'
             ],
             [
                 'attribute'=> 'img_after',
                 'value' => function($model){
-                    return echo '/'.Html::img($model->img_after, ['width' => 150]);
+                    return Html::img($model->img_after, ['width' => 150]);
                 },
                 'format' => 'html'
             ],
             'created_at',
             'description',
-            'price',
-            'status_id',
+            'is_solved',
+            'category_id',
         ],
     ]) ?>
 </div>

@@ -5,10 +5,6 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $StoreRequest app\modules\admin\models\StoreRequest */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Записи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
   </p>
   <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $StoreRequest,
+        'filterModel' => $RequestsFinder,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'name',
@@ -38,9 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html'
             ],
             'description',
-            'status_id',
+            'reason',
+            'category_id',
             'created_at',
-            'price',
+            'is_solved',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

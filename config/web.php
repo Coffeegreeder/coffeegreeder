@@ -55,6 +55,11 @@ $config = [
 
     ],
     'params' => $params,
+    'controllerMap' => [
+        'migration' => [
+            'class' => 'bizley\migration\controllers\MigrationController',
+        ],
+    ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\admin',

@@ -44,6 +44,7 @@ class Requests extends \yii\db\ActiveRecord
             [['img_upload'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, bmp', 'maxSize' => 10 * 1024 * 1024  ],
             [['img_update'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, bmp', 'maxSize' => 10 * 1024 * 1024 ],
             [['description', 'name', 'reason', 'img_after', 'img_before'], 'string', 'max' => 255],
+            [['description', 'name', 'reason'], 'filter','filter'=>'\yii\helpers\HtmlPurifier::process'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
